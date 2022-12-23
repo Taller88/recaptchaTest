@@ -1,0 +1,185 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./lib/jquery/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/tableMenu.css">
+</head>
+
+<body>
+    <h1 class="lgTitle">LGUplus API</h1>
+    <br>
+        <h2 style="color:#556EED">{{user}}님 원하는 기능의 버튼을 클릭해주세요.</h2>
+    <br>
+    <!-- <form action="/hometax/cashReceipt" method="POST"> -->
+    <div class = "inner">
+        <h2>통신요금조회</h2>
+        <br>
+        <button class = "mainButton" id="rateInquryBtn" style=" display: inline-block;">Scraping</button>
+    </div>
+      
+    <div id = "rateInquryDiv">
+        <table class="styled-table2" id = "rateInquryTable">
+            <thead>
+                <th>날짜</th>
+                <th>금액</th>
+                <th>상세</th>
+            </thead>
+           <tbody id = 'inquryList'>
+           </tbody>
+        </table>
+    </div>
+    <hr/>
+    <div class = "inner">
+    <h2>월별사용량조회</h2>
+    <br>
+    <button class = "mainButton" id="monthlyUsageBtn" style=" display: inline-block;">Scraping</button>
+    <br>
+    <br>
+    <input type="hidden" name="errMsg" id="errMsg" value="{{errMsg}}"/>
+    <div class="tabmenu">
+        <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+        <label for="tab1">기본사항</label>
+    
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2">약정기간</label>
+    
+        <input id="tab3" type="radio" name="tabs">
+        <label for="tab3">음성통화</label>
+    
+        <input id="tab4" type="radio" name="tabs">
+        <label for="tab4">영상통화</label>
+        <input id="tab5" type="radio" name="tabs">
+        <label for="tab5">SMS/MMS</label>
+        <input id="tab6" type="radio" name="tabs">
+        <label for="tab6">데이터</label>
+        <input id="tab7" type="radio" name="tabs">
+       
+        <section id="content1">
+        </section>
+        <section id="content2">
+        </section>
+        <section id="content3">
+        </section>    
+        <section id="content4">
+        </section>
+        <section id="content5">
+        </section>
+        <section id="content6">
+        </section>
+       
+    </div>
+    <script>
+        window.onload = function(){
+            const err = decodeURIComponent(document.getElementById('errMsg').value);
+            // alert(err)
+            if(err){
+                alert(err)
+            }
+           
+
+        }
+    </script>
+    <script>
+
+        $("#monthlyUsageBtn").click(function(){
+            console.log("monthlyUsageBtn clicked!");
+            const param = {year:"2022", month:"07"};
+             
+
+                $.ajax({ url: '/lguplus/monthlyUsage', // 읽어올 문서 
+                    type: 'post', // 방식 
+                    data: param,
+                    datatype: "json",
+                    error: function(e){ // 로딩 에러시 
+                        // console.log(JSON.stringify(e))
+                        alert('Error loading XML document: '); 
+                    }, 
+                    success: function(json){
+                       
+                        const jsonArr = json.monthToUseList;
+                        for(var i=0; i<jsonArr.length; i++){
+                            const htmlData = parsing(jsonArr[i]);
+                            if(jsonArr[i].menuKey==1){
+                                $("#content1").append(htmlData);
+                            }else if(jsonArr[i].menuKey==2){
+                                $("#content2").append(htmlData);
+                            }else if(jsonArr[i].menuKey==3){
+                                $("#content3").append(htmlData);
+                            }else if(jsonArr[i].menuKey==4){
+                                $("#content4").append(htmlData);
+                            }else if(jsonArr[i].menuKey==5){
+                                $("#content5").append(htmlData);
+                            }else if(jsonArr[i].menuKey==6){
+                                 $("#content6").append(htmlData);
+                            }
+
+                        }
+
+                    } 
+                });
+        });
+
+        function parsing(jsonArrEl){
+            const dtlList = jsonArrEl.dtlList;
+            let htmlData = '<table class="styled-table">'
+            for(var i=0; i<dtlList.length; i++){
+                htmlData+="<tr>"
+                    htmlData+="<th>"
+                    htmlData+=dtlList[i].menuDtl;
+                    htmlData+="</th>"
+                    htmlData+="<td>"
+                    htmlData+=dtlList[i].menuVal;
+                    htmlData+="</td>"
+                htmlData+="</tr>"                                    
+            }
+            htmlData+="</table>"
+            return htmlData;
+        }
+        $("#rateInquryBtn").click(function(){
+            console.log("rateInquryBtn clicked!")
+            // const param = {month:document.getElementById('month').value}
+             
+
+                $.ajax({ url: '/lguplus/rateInqury', // 읽어올 문서 
+                    type: 'get', // 방식 
+                    async:false,
+                    error: function(e){ // 로딩 에러시 
+                        console.log(JSON.stringify(e))
+                        alert('Error loading XML document: '); 
+                    }, 
+                    success: function(json){
+                        console.log("rateInqury load succ")
+                        console.log("json: "+JSON.stringify(json));
+                        console.log("totCnt: "+ json.totCnt);
+                        const jsonData = json.recpPaymDlstList;
+                        console.log(":jsonData.length: "+ jsonData.length);
+                        for(var i=0; i<jsonData.length; i++){
+                            console.log(typeof(jsonData[i]));
+                            const jsonEl = jsonData[i];
+
+                            var trData = '<tr>'
+                             trData += '<td>'+jsonEl['pymDt']+'</td>'
+                             trData += '<td>'+jsonEl['pymAmt']+'</td>'
+                             trData += '<td>'+jsonEl['pymDesc']+'</td>'
+                             trData += '</tr>'
+                             $("#inquryList").append(trData);
+
+                        }
+                    } 
+                });
+
+        })
+
+
+
+    </script>
+    <div class = "result"></div>
+
+
+</body>
+</html>

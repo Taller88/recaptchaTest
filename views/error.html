@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./lib/jquery/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <h1>LGUplus API</h1>
+    <br>
+        <h2>{{custNm}}님 원하는 기능의 버튼을 클릭해주세요.</h2>
+    <br>
+    <!-- <form action="/hometax/cashReceipt" method="POST"> -->
+    <div class = "inner">
+      <b>1.통신요금조회</b>
+      <button id="rateInqury">조회</button>
+    </div>
+        <!-- <input type= "submit" value="조회"> -->
+    <!-- </form> -->
+    <div id = "receiptDiv">
+        <table id = "receiptTable">
+            <thead>
+                <th>사용처</th>
+                <th>금액</th>
+                <th>시간</th>
+            </thead>
+           <tbody id = 'receiptList'>
+           </tbody>
+        </table>
+    </div>
+    <hr/>
+    <div class = "inner">
+    <b>2. lguplusMonth</b>
+    <button id="selectEarn">조회</button>
+    <input type="hidden" name="errMsg" id="errMsg" value="{{errMsg}}"/>
+    </div>
+    <script>
+        window.onload = function(){
+            const err = decodeURIComponent(document.getElementById('errMsg').value);
+            // alert(err)
+            if(err){
+                alert(err)
+            }
+           
+
+        }
+    </script>
+    <script>
+        $("#selectEarn").click(function(){
+            alert("open 준비중입니다..")
+        });
+        $("#selectReceipt").click(function(){
+            const param = {month:document.getElementById('month').value}
+             
+
+                $.ajax({ url: '/lguplus/rateInqury', // 읽어올 문서 
+                    type: 'get', // 방식 
+                    async:false,
+                    // dataType: 'xml', // 문서 타입 
+                    error: function(e){ // 로딩 에러시 
+                        console.log(JSON.stringify(e))
+                        alert('Error loading XML document: '); 
+                    }, 
+                    success: function(json){
+                        console.log("jsonsucc")
+                        
+                    } 
+                });
+
+        })
+
+
+    </script>
+    <div class = "result"></div>
+
+
+</body>
+</html>

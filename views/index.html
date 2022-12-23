@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>index.html</title>
+
+</head>
+
+<body>
+   
+    <script>
+        
+        window.onload = function(){
+            const errMsg = document.getElementById("errMsg").value;
+            // alert(errMsg)
+            if(errMsg !== "/"){
+                if(errMsg.indexOf("lgLoginFail")>-1){
+                    alert("입력하신 정보가 올바르지 않습니다.")
+                }else if(errMsg==="notComplete/"){
+                    alert("인증완료 후에 버튼을 클릭해주세요")
+                }
+            }
+        }
+    </script>
+     <div id="lgUplusForm"> 
+        <br>
+        <p  class="titleTxt"><b>JJW Scaping Page</b></p>
+            
+        <form action="/lguplus/login" method="POST" class="form-style-1">
+            <b class="lgTitle">LgUplusLogin</b><br><br>
+            <input type="text" name = "lgUserId" placeholder="아이디 입력"/>
+            <br/>
+            <br>
+            <input type="password" name = "lgUserPassword" placeholder="비밀번호 입력"/>
+            <br/>
+            <br>
+            <input type="hidden" name = "errMsg" id ="errMsg" value = {{errMsg}}/>
+            <br/>
+            <input type= "submit">
+        </form>
+    </div>
+<hr>
+    <div id="indexForm"> 
+        
+        <button onclick="onClick()">recaptcha</button>    
+        <form action="/hometax/login" method="POST" class="form-style-1">
+            <b>HomeTax 2022년 API</b><br>
+            <b id ="subB">간편인증 로그인</b><br><br>
+            <input type="text" name = "userName" placeholder="이름 입력"/>
+            <br/>
+            <br>
+            <input type="text" name = "phoneNum" placeholder="연락처 입력"/>
+            <br/>
+            <br>
+            <input type="text" name = "birth" placeholder="생년월일(yyyymmdd)"/>
+            <br>
+            <input type="hidden" name = "errMsg" id ="errMsg" value = {{errMsg}}/>
+            <br/>
+            <input type= "submit">
+
+        </form>
+    </div>
+    <br>
+    
+    <!-- <p>공동인증서 목록조회</p>
+    <form action="/certSelect" method="POST">
+        <br/>
+        <input type= "submit" value = "조회">
+    </form>
+    <p>무신사</p>
+    <form action="/musinsa" method="POST">
+        <br/>
+        <input type= "submit" value = "조회">
+    </form> -->
+    
+   
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc3fgATAAAAAGs68Yfc6gFlTP0LK-KtWj1AD7C7"></script>
+    <script>
+        function onClick() {
+        //   e.preventDefault();
+          grecaptcha.ready(function() {
+            grecaptcha.execute('6Lc3fgATAAAAAGs68Yfc6gFlTP0LK-KtWj1AD7C7', {action: 'submit'}).then(function(token) {
+                // Add your logic to submit to your backend server here.
+                console.log(token);
+            });
+          });
+        }
+    </script>
+
+    <script>
+     
+</script>
+
+</body>
+</html>

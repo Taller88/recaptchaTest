@@ -1,0 +1,25 @@
+{
+  "name": "recaptchatest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taller88/recaptchaTest.git"
+  },
+  "author": "jjw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Taller88/recaptchaTest/issues"
+  },
+  "homepage": "https://github.com/Taller88/recaptchaTest#readme",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nunjucks": "^3.2.3"
+  }
+}
