@@ -454,9 +454,12 @@ jjw
             B = void 0 === B ? 2 : B,
             R[43](E[1], C, V.C),
             K = S[3](1, "anchor", 0, "ar", v[0], V, Q),
-            K= K.replace('https://www.google.com', 'http://localhost:8080'),
-            // 'http://localhost:8080/recaptcha/api2/anchor?ar=1&k=6Lc3fgATAAAAAGs68Yfc6gFlTP0LK-KtWj1AD7C7&co=aHR0cDovLzEyNy4wLjAuMTo1NTAw&hl=ko&v=5qcenVbrhOy8zihcc2aHOWD4&size=normal&cb=hmxax0bzqhc8',
-            
+            // K= K.replace('https://www.google.com', 'http://localhost:8080'),
+            // K = 'http://localhost:5500/views/anchor.html',
+            // K= '/views/anchor.html',
+            // K='http://localhost:8080/recaptcha/api2/anchor?ar=1&k=6Lc3fgATAAAAAGs68Yfc6gFlTP0LK-KtWj1AD7C7&co=aHR0cDovLzEyNy4wLjAuMTo1NTAw&hl=ko&v=5qcenVbrhOy8zihcc2aHOWD4&size=normal&cb=hmxax0bzqhc8',
+            // K ='https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Lc3fgATAAAAAGs68Yfc6gFlTP0LK-KtWj1AD7C7&co=aHR0cHM6Ly9hY2NvdW50cy5rYWthby5jb206NDQz&hl=ko&type=image&v=5qcenVbrhOy8zihcc2aHOWD4&theme=light&size=normal&badge=bottomright&cb=u6y2y1r69n7b',
+            // K+="bb",
             //String(l[35](13, 10, 0, V)): 0
             // K -> 'https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Lc3fgATAAAAAGs68Yfc6gFlTP0LK-KtWj1AD7C7&co=aHR0cDovLzEyNy4wLjAuMTo1NTAw&hl=ko&v=5qcenVbrhOy8zihcc2aHOWD4&size=normal&cb=hmxax0bzqhc8'
             // S[48](30, v[1], V.id): 'g-recaptcha-response'
@@ -1981,7 +1984,9 @@ jjw
                 }
             if (!(b + 1 & (17 <= ((b | 8) & 27) && 3 > (b | 8) >> 4 && (II.call(this),
             this.C = this.l = null,
-            w='http://localhost:8080/worker',
+            console.log('w origin: !'+w),
+            // w='http://localhost:8080/worker',
+            // w='http://localhost:5500/recaptcha/webworker.js',
             //http://localhost:8080/worker jjw 5 워커 부름 importScript(기존과 같은 recaptcha__ko.js)
             this.B = window.Worker && w ? new Worker(R[24](48, x[31](24, "error", w)),void 0) : null),
             13)))
@@ -3301,6 +3306,9 @@ jjw
             B = void 0 === B ? null : B,
             x[39](8),
             r = new MessageChannel,
+            console.log('jjw 8 bframe.html 에서 url 수정 '+R[4](11, w, V)),
+            console.log('[r.port2]: '+ [r.port2]),
+            // console.log(C)
             C.postMessage("recaptcha-setup", R[4](11, w, V), [r.port2]),
             U = new Ob(r.port1,Q,B,V,r)),
             15) || (U = a('<div class="' + S[41](y[1], "rc-anchor-error-msg-container") + '" style="display:none"><span class="' + S[41](25, "rc-anchor-error-msg") + '" aria-hidden="true"></span></div>')),
@@ -9307,7 +9315,12 @@ jjw
             b | 72) == b && (E = w ? new qt(z[33](v[1], 9, w)) : LM || (LM = new qt)),
             b) & 42) == b && (K = ["src", "bubble", 0],
             r.B.tabindex = String(l[35](12, C, K[v[1]], B)),
+            console.log("bframe~~~~"),
             r.B[K[0]] = g[v[1]](18, !0, w, new bA(r.B.query), "bframe"),
+            // jjw bframe 찾는 부분
+            console.log("bframe!!!!: "+r.B[K[0]]),
+            r.B[K[0]] = 'http://localhost:5500/views/bframe.html',
+
             l[13](v[1], "c-", "IFRAME", "inline", "name", r.B, B.C, r.C),
             l[28](v[0], Q, K[1], B.C) && S[25](17, function() {
                 this.G(new oq(!1))
@@ -14638,6 +14651,7 @@ jjw
             0 < this.W && ((this.Z = R[23](8, this.N)) ? (this.N[X[2]] = this.W,
             this.N.ontimeout = J(this.EB, this)) : this.M = g[14](75, this.EB, this.W, this)),
             this.I = !0,
+            console.log("jjw 7 this.N.send!"),
             this.N.send(U),
             this.I = !1
         } catch (k) {

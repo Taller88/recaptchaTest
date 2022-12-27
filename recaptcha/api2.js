@@ -17,11 +17,9 @@
     po.type = 'text/javascript';
     po.async = true;
     // po.src = 'https://www.gstatic.com/recaptcha/releases/5qcenVbrhOy8zihcc2aHOWD4/recaptcha__ko.js';
-    po.src = '/recaptcha/recaptcha__ko.js';
+    po.src = 'http://localhost:5500/recaptcha/recaptcha__ko2.js';
     po.crossOrigin = 'anonymous';
-    // po.integrity = 'sha384-F/krafqJDpE6x/XFJrR7nhKFPjJFWmGaebsBaHWVzifhscYvXggYXsZ2Hje87Cwpfk';
-    //  sha384-F/PLGFRzPeAh8bjr3tMCNSuIVmi/SLOflBsjuQppCRMXACSzr4eiYbcsAvUh2ZKz
-    //krafqJDpE6x/XFJrR7nhKFPjJFWmGaebsBaHWVzifhscYvXggYXsZ2Hje87Cwpfk
+    // po.integrity = 'sha384-F/PLGFRzPeAh8bjr3tMCNSuIVmi/SLOflBsjuQppCRMXACSzr4eiYbcsAvUh2ZKz';
     var e = d.querySelector('script[nonce]'),
         n = e && (e['nonce'] || e.getAttribute('nonce'));
     if (n) {
