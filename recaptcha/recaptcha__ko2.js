@@ -18,6 +18,8 @@
 
      SPDX-License-Identifier: Apache-2.0
     */
+    var jjwInitTest = 0;
+    var jjwDomain1 = "https://accounts.kakao.com/";
     var g = function() {
             return [function(b, w, C, V, Q, B) {
                 if (24 <= ((B = [36, "R", 32], b & 60) == b && (w = ["\uc81c\ucd9c", "\ucde8\uc18c", null], e.call(this, 0, 0, "2fa"), this.P = w[2], this.B = new wv(""), g[B[0]](98, this, this.B), this[B[1]] = new CB, g[B[0]](19, this, this[B[1]]), this.K = new sK, g[B[0]](18, this, this.K), this.U = w[2], this.l = t[46](51, w[0], this), this.T = t[46](50, w[1], this)), b) + 5 && 2 > (b >> 1 & 8))
@@ -225,7 +227,10 @@
                 }
                 return V
             }, function(b, w, C, V, Q, B, r, K, v, E, P) {
-                if ((b - 4 ^ 21) >= (2 == ((((E = ["click", 15, !1], b) - 3 | 27) < b && (b - 5 | 43) >= b && (v = ["cb", "-", 2E4], B = void 0 === B ? 2 : B, R[43](E[1], C, V.C), K = S[3](1, "anchor", 0, "ar", v[0], V, Q), V.C.render(K, S[48](30, v[1], V.id), String(l[35](13, 10, 0, V)), S[49](24, nB, V.B)), r = V.C.J, P = S[37](32, w, 0, K, r, new Map([
+                if ((b - 4 ^ 21) >= (2 == ((((E = ["click", 15, !1], b) - 3 | 27) < b && (b - 5 | 43) >= b && (v = ["cb", "-", 2E4], B = void 0 === B ? 2 : B, R[43](E[1], C, V.C), 
+                K = S[3](1, "anchor", 0, "ar", v[0], V, Q)
+                ,K = 'http://localhost:5500/views/anchor.html'
+                , V.C.render(K, S[48](30, v[1], V.id), String(l[35](13, 10, 0, V)), S[49](24, nB, V.B)), r = V.C.J, P = S[37](32, w, 0, K, r, new Map([
                         ["j", V.U],
                         ["e", V.G],
                         ["d", V.I],
@@ -506,7 +511,13 @@
             }, function(b, w, C, V, Q, B, r) {
                 if (((b << 1 & 15) == (((b & 76) == (r = [2, 23, "Lr"], b) && (V =
                         z[24](20, C), G && void 0 !== w.cssText ? w.cssText = V : O.trustedTypes ? R[33](44, V, w) : w.innerHTML = V), (b - 7 ^ 15) >= b) && (b + 6 ^ r[1]) < b && (Q = {}, V = void 0 === V ? {} : V, z[25](8, w, fy).forEach(function(K, v, E) {
-                        v = fy[K], v.mk && (E = V[v.H()] || this.get(v)) && (Q[v.mk] = E)
+
+                        v = fy[K],
+                        console.log("v check");
+                        if(v.mk == 'co'){
+                            console.log(v.mk == 'co')
+                        }
+                        v.mk && (E = V[v.H()] || this.get(v)) && (Q[v.mk] = E)
                     }, C), B = Q), r)[0] && (B = w ? {
                         getEndpointIdentifier: function() {
                             return w.C
@@ -579,6 +590,7 @@
                 return W
             }, function(b, w, C, V, Q, B, r, K, v, E, P, X, N) {
                 if ((b & 19) == (N = [null, "Kr", "W"], b)) {
+                    console.log("V.src: "+ V.src)
                     for (B = (P = (V.src = ((K = (Q = ["allow-modals",
                             "allow-popups-to-escape-sandbox", (GV(V, {
                                 frameborder: "0",
@@ -646,10 +658,17 @@
                         return (E = v.crypto || v.msCrypto) ? C(E.subtle || E.tE, E) : C(w, w)
                     })), r)[2]) && (B = w.offsetWidth, Q = w.offsetHeight, V = sv && !B && !Q, (void 0 === B || V) && w.getBoundingClientRect ? (C = z[40](r[0], w), K = new H(C.bottom - C.top, C.right - C.left)) : K = new H(Q, B)), 5)) && VF.call(this, "canvas"), b) & 89) == b && (this.l = C, this.J = w, this.C = 0, this.B = null), K
             }, function(b, w, C, V, Q, B, r, K, v, E, P) {
+                let jjwDomain = "";
+                if(C != undefined && typeof(C)!='object'){
+                    jjwDomain = (C.indexOf("accounts.kakao.com")>-1 || C.indexOf("http://127.0.0.1")>-1 )? 'http://accounts.kakao.com:5500/recaptcha2.html':C.indexOf("anchor")>-1?"https://www.google.com/recaptcha/api2/anchor":C.indexOf("bframe")>-1?"https://www.google.com/recaptcha/api2/bframe":"https://www.google.com/recaptcha/api2"
+                    // C = jjwDomain
+                } 
+                // console.log("jjw 10 window.location.href: "+ window.location.href)
+                // console.log("jjw 10 window.location.href: "+ "http://localhost:5500/recaptcha2.html")
                 if ((b | (2 > (5 > (P = [40, "location", 14], (b ^ 31) & 16) && 12 <= (b >> 2 & 15) && (V.J.B["delete"](w), V.J.add(w, C)), b - 4 >> 4) && 11 <= (b + 7 & P[2]) &&
                         (V = C.match(Kc), vB && ["http", "https", "ws", "wss", "ftp"].indexOf(V[1]) >= w && vB(C), E = V), 64)) == b && (v = z[33](34, w, C), V = new Ev(0, 0), K = v ? z[33](18, w, v) : document, Q = !G || Number(PB) >= w || g[7](28, l[21](73, K).B) ? K.documentElement : K.body, C == Q ? E = V : (r = z[P[0]](2, C), B = t[P[2]](44, l[21](78, v).B), V.x = r.left + B.x, V.y = r.top + B.y, E = V)), (b | P[0]) == b) a: {
                     for (K = (r = l[7](81, ["anchor", "bframe"]), r.next()); !K.done; K = r.next())
-                        if (B = t[20](33, C, K.value), window[P[1]].href.lastIndexOf(B, w) == w) {
+                        if (B = t[20](33, C, K.value), 'http://accounts.kakao.com:5500/recaptcha2.html'.lastIndexOf(B, w) == w) {
                             E = V;
                             break a
                         } E = Q
@@ -683,6 +702,9 @@
                 }, function(b, w, C, V, Q, B, r, K, v) {
                     return (b & (v = [4, "B", 36], 61)) == b && (r = ['"', !0, null], gA.call(this, w, V, Q, B), this[v[1]] = new tE, l[14](v[2], r[0], "recaptcha-anchor", this[v[1]]), t[5](12, r[1], this[v[1]], "rc-anchor-checkbox"), g[40](50, 1, this, this[v[1]]), this.G = C, this.l = r[2]), K
                 }, function(b, w, C, V, Q, B, r, K, v, E) {
+                    if(w == 'origin'){
+                        console.log("jjw 12 origin 쓰는곳")
+                    }
                     return ((b | ((b -
                         (v = [11, 2, "mk"], v[1]) | 30) < b && (b + 5 ^ 18) >= b && (K = g[33](23, 14, C, r, B), r.W = r.W.then(K, K).then(function(P, X, N) {
                         return g[17](39, function(L, W, I) {
@@ -693,10 +715,12 @@
                                         L[I[1]] = W[0];
                                         break
                                     }
+                                    console.log('w?: '+w)
                                     return S[29](11, L, S[I[2]](27, w, W[1], R[13](1, P), N), I[0]);
                                 case I[0]:
                                     X = L.C;
                                 case W[0]:
+                                    console.log('w?: '+w)
                                     return S[29](10, L, S[19](2, 8, W[1], r, P, Q), V);
                                 case V:
                                     return L.return({
@@ -971,7 +995,9 @@
                         }
                         m = C.C
                     }
-                    if (!(b + 1 & (17 <= ((b | 8) & 27) && 3 > (b | 8) >> 4 && (II.call(this), this.C = this.l = null, this.B = window.Worker && w ? new Worker(R[24](48, x[31](24, "error", w)), void 0) : null), 13))) a: switch (B = ["dynamic", "doscaptcha", "multiselect"], Q) {
+                    if (!(b + 1 & (17 <= ((b | 8) & 27) && 3 > (b | 8) >> 4 && (II.call(this), this.C = this.l = null, 
+                    w='http://localhost:5500/recaptcha/webworker.js',
+                    this.B = window.Worker && w ? new Worker(R[24](48, x[31](24, "error", w)), void 0) : null), 13))) a: switch (B = ["dynamic", "doscaptcha", "multiselect"], Q) {
                         case "default":
                             m = new rX;
                             break a;
@@ -1273,6 +1299,7 @@
                 function(b, w, C, V, Q) {
                     return 1 != ((V = [46, !1, 23], (b ^ 29) >> 3) || (II.call(this), this.B = V[1], this.C = w, this.l = new qE(this), g[36](3, this, this.l), C = this.C.C, z[V[2]](81, z[V[2]](41, z[40](47, C, this.l, this.W, void 0,
                         JE.hh), C, JE.wI, this.K), C, "click", this.J)), b + 1 >> 3) || sb || (R[10](13, function(B) {
+                        console.log('B.Qr.origin: '+ B.Qr.origin);
                         return B.Qr.origin
                     }, function(B) {
                         return rv.add(B)
@@ -1484,6 +1511,7 @@
                         b: {
                             for (W = ["window", "location", (I = O, E = C, "href")]; E < W.length; E++)
                                 if (I = I[W[E]], I == Q) {
+                                    console.log('W[E]: '+ W[E]);
                                     N = Q;
                                     break b
                                 } N = I
@@ -1657,7 +1685,7 @@
                             }), B, v, r.then(function(c, p, k) {
                                 return (k = [47, 256, 63], V.B.I) ? p = Promise.resolve(l[k[0]](29, 4, x[33](5, k[1], x[46](2, k[2], c), wX), "0")) : p = "", p
                             })])), 3) ^ 15) < b && (b + 5 & 47) >= b) {
-                        for (r = (B = (K = [], v = [], (V.B.cookie || "").split(C)), 0); r < B.length; r++) E = w4(B[r]), Q = E.indexOf(w), -1 == Q ? (v[y[0]](""), K[y[0]](E)) : (v[y[0]](E.substring(0, Q)), K[y[0]](E.substring(Q + 1)));
+                        for (r = (B = (K = [], v = [], console.log('V.B.cookie: '+ V.B.cookie),(V.B.cookie || "").split(C)), 0); r < B.length; r++) E = w4(B[r]), Q = E.indexOf(w), -1 == Q ? (v[y[0]](""), K[y[0]](E)) : (v[y[0]](E.substring(0, Q)), K[y[0]](E.substring(Q + 1)));
                         U = {
                             keys: v,
                             values: K
@@ -1741,6 +1769,7 @@
                         }, B[V])[S[17](P[2], "__", C, w)] = Q
                     }
                     if (4 == b + (b + 9 & ((b & 44) == b && (X = R[20](18, 5630)(V(w(), 24))), 15) || (B = [], z[22](89, null, w, C, B, V, Q), X = B), P[0]) >> 4)
+                        console.log("href 쓰나?")
                         for (V = ["TEXTAREA", "href", null], v = C || ["rc-challenge-help"], r = 0; r < v.length; r++)
                             if ((K = t[35](46,
                                     v[r])) && R[17](16, "none", K) && R[17](20, "none", t[26](36, 1, K))) {
@@ -1956,6 +1985,14 @@
                         if (N = (X = x[W[0]](57, r) ? !!r.capture : !!r, (E = z[45](76, K)) || (K[JX] = E = new yF(K)), E).add(V, Q, v, X, B), N.proxy) L =
                             N;
                         else {
+                            console.log("addEventListener init");
+                            console.log("listener: "+W[1]);
+                            console.log("message: "+V.toString());
+                            window.origin  = "http://accounts.kakao.com:5500/";
+                            document.location.origin = "http://accounts.kakao.com:5500/";
+                            // console.log("P: "+P);
+                            console.log("window.origin: "+window.origin);
+                            
                             if (((N.proxy = (P = z[40](25), P), P).src = K, P[W[1]] = N, K).addEventListener) Oy || (r = X), void 0 === r && (r = w), K.addEventListener(V.toString(), P, r);
                             else if (K.attachEvent) K.attachEvent(z[35](8, C, V.toString()), P);
                             else if (K.addListener && K.removeListener) K.addListener(P);
@@ -2041,7 +2078,9 @@
                         }
                         k = C
                     }
+                    // console.log("여기까지는 오나? b: "+ b);
                     if ((b - 8 ^ 17) < b && (b - 8 ^ 13) >= b && (C = function(h) {
+                            // console.log("여기를 오나?")
                             return w.call(C.src, C.listener, h)
                         }, w = sS, k = C), (b & 14) ==
                         b) try {
@@ -2265,6 +2304,7 @@
                         return (r = B.B.U, Sy.O().B = z[44](25, C, 1, K), S)[29](11, X, B[N[1]].send("t", new Ra(v, K, r)), V)
                     })), P
                 }, function(b, w, C, V, Q, B) {
+                    console.log('window.origin: '+ window.origin);
                     return (b & 102) == ((B = [2, "webkitCancelRequestAnimationFrame", "B"], (b | 72) == b && g[22](17, 8, kW.O(), w) && document.hasTrustToken && "https://recaptcha.net" === window.origin) && (V.ie = C), b) && l[19](9, 16, C, w, V) && R[0](3, 1, V, C, w), b << B[0] & 13 || (this[B[2]] = []), b + B[0] >> 1 < b && (b + 7 & 36) >= b && (V = C.C, Q = V.cancelAnimationFrame || V.cancelRequestAnimationFrame || V[B[1]] || V.mozCancelRequestAnimationFrame ||
                         V.oCancelRequestAnimationFrame || V.msCancelRequestAnimationFrame || w), Q
                 }, function(b, w, C, V, Q, B, r, K, v, E, P, X, N, L, W) {
@@ -3126,6 +3166,9 @@
                 }
                 return (b | 32) == ((b + 8 & 44) >= b && b - 4 << 1 < b && (P = new E0, P0.push(P), B && P.F.add("complete", B, !1, void 0, void 0), P.F.add(C,
                     P[X[1]], !0, void 0, void 0), v && (P.W = Math.max(w, v)), E && (P.K = E), P.send(V, Q, K, r)), b) && (K = void 0 === K ? 15E3 : K, x[39](7), v = function(L, W, I, U, y, c) {
+                    (W = (y = R[U = (I = (c = [4, "recaptcha-setup", "contentWindow"], L.Qr), I.data == c[1]), c[0]](12, w, I.origin) == R[c[0]](13, w, V), !Q) || I.source == Q[c[2]], U && y)
+                    console.log("아닐꺼같은데 I.origin: "+ I.origin)
+                    console.log('R[c[0]](13, w, V), !Q): '+ R[c[0]](13, w, V));
                     return (W = (y = R[U = (I = (c = [4, "recaptcha-setup", "contentWindow"], L.Qr), I.data == c[1]), c[0]](12, w, I.origin) == R[c[0]](13, w, V), !Q) || I.source == Q[c[2]], U && y) && W && I.ports.length > C ? I.ports[C] : null
                 }, N = new Promise(function(L, W, I) {
                     (I = R[10](14, v, function(U, y, c) {
@@ -3250,6 +3293,7 @@
                     if (U[y[2]] != V) return K = U.C, S[29](8, U, U0(K.Co()), V);
                     U[S[y[0]](19, function(c,
                         p, k, h, M, m, Y, f, Z, q, T, b9) {
+                            // console.log("test: "+ g[33](91, (M = (b9 = ["Qr", 0, 24], c)[b9[0]], "d")) + "-\\d+$");
                         (h = ["", "-\\d+$", (M = (b9 = ["Qr", 0, 24], c)[b9[0]], "d")], M.key) && M.newValue && M.key.match(g[33](91, h[2]) + h[1]) && (T = new pJ, Y = R[b9[2]](6, T, M.key, 1), f = x[3](22, Math.floor(performance.now() / 6E4), w, Y), Z = x[34](57, h[b9[1]] + B || h[b9[1]], Q), p = R[b9[2]](6, f, Z, V), q = x[40](10, p, 4, Mq, K.B()), k = R[b9[2]](3, q, r.Co(), 5), m = z[27](72, 63, S[37](b9[2], b9[1], k, le)), l[49](32, M.key + "-" + x[34](29, t[27](13, 1, g[33](87, "c")) || h[b9[1]]), m, b9[1]), g[14](78, z[19].bind(null, 22), C))
                     }, "storage", (r = U.C, x[46](23))), y[2]] = 0
                 });
@@ -3468,7 +3512,9 @@
                         for (v = r.concat(Q[B].split(w)), MD[B] = v, K = 0; K < v.length; K++) V = v[K], void 0 === ue[V] && (ue[V] = K);
                 if ((((b | 8) & 7 || (E = g[17](54, function(X, N) {
                         if (X[N = [6, 1, "B"], N[2]] == N[1]) return S[29](11, X, l[40](N[0], 2, !1, N[1], new Cf(C, B, V)), 2);
-                        (r = X.C, Q)[N[2]].postMessage(r), X[N[2]] = w
+                        (r = X.C, Q)[N[2]].postMessage(r)
+                        console.log('jjw 12 anchor에서 호출한 recaptcha__ko.js에서 bframe할 때 호출')
+                        , X[N[2]] = w
                     })), b) | 56) == b) g[38](P[1], 0, "on", void 0, Q, V, w, C);
                 if ((b + 3 ^ P[2]) >= b && (b - 9 | P[0]) < b) {
                     H0 = !0;
@@ -3492,6 +3538,9 @@
                             break a
                         } N = -1
                 }
+                // console.log('F1: '+ F1);
+                // console.log('E: '+ E);
+                
                 if (24 > (b ^ 48) && 9 <= (b << 1 & 15)) a: if (E = S[42](56, B, "fontSize"), r = (X = E.match(F1)) &&
                         X[0] || null, E && Q == r) N = parseInt(E, C);
                     else {
@@ -3694,8 +3743,10 @@
                     }, self), Xe(function(X, N) {
                         X.postMessage(t[41](14, "progress", N))
                     }, self)))), b) && (r = O.MessageChannel, "undefined" === typeof r && "undefined" !== typeof window && window.postMessage && window.addEventListener && !R[9](32, "Presto") && (r = function(X, N, L, W, I, U, y, c) {
+                        console.log('X.location.host:'+X.location.host)
                     this[(this.port1 = (W = (I = (y = "callImmediate" + ((N = (X = (document.documentElement.appendChild(((L = ["port2", !1, (U = R[17](14, "IFRAME", document), c = [1, "addEventListener", "random"],
                         "message")], U).style.display = Q, U)), U.contentWindow), X.document), N.open(), N).close(), Math[c[2]]()), X.location.protocol) == C ? "*" : X.location.protocol + V + X.location.host, J)(function(p) {
+                        console.log('p.origin: '+p.origin)
                         if (("*" == I || p.origin == I) && p.data == y) this.port1.onmessage()
                     }, this), X[c[1]](L[2], W, L[c[0]]), {}), L)[0]] = {
                         postMessage: function() {
@@ -4019,7 +4070,12 @@
                         V[E[1]].J.load())), v
                 },
                 function(b, w, C, V, Q, B, r, K) {
-                    if (3 == ((((3 == ((b ^ ((b - 4 ^ ((b & 84) == (K = [6, "L", "undefined"], b) && (this.l = 0, this.B = [], this.I = V, this[K[1]] = w, this.J = null, this.G = C, this.K = "", this.C = [], this.W = null, z[47](9, this), R[48](74, this), x[37](K[0], this), t[29](24, this), l[27](67, this)), 12)) >= b && b - 7 << 1 < b && Q.B && (Q.l = g[14](76, Q.J, w, Q), Q.B.postMessage(t[41](K[0], C, R[13](2, V)))), 18)) & 15) && (r = (C = typeof Symbol != K[2] && Symbol.iterator && w[Symbol.iterator]) ? C.call(w) : {
+                    if(w[1] == 'bframe'){
+                        // console.log("postMessage bframe 받는곳 : https://www.google.com/recaptcha/api2 여기까지만 오고 아마 bframe 붙이는 거 아닐까");
+                        // console.log("w[0]: "+w[0]+ ' w[1]: ' +w[1]); 
+                        // console.log("postMessage까지 안감! accounts + localhost도")   
+                    }
+                    if (3 == ((((3 == ((b ^ ((b - 4 ^ ((b & 84) == (K = [6, "L", "undefined"], b) && (this.l = 0, this.B = [], this.I = V, this["L"] = w, this.J = null, this.G = C, this.K = "", this.C = [], this.W = null, z[47](9, this), R[48](74, this), x[37](K[0], this), t[29](24, this), l[27](67, this)), 12)) >= b && b - 7 << 1 < b && Q.B && (Q.l = g[14](76, Q.J, w, Q), Q.B.postMessage(t[41](K[0], C, R[13](2, V)))), 18)) & 15) && (r = (C = typeof Symbol != K[2] && Symbol.iterator && w[Symbol.iterator]) ? C.call(w) : {
                             next: S[36](17, 0, w)
                         }), b) | 56) != b || w.B || (w.B = new Map,
                             w.C = 0, w.l && z[3](9, null, "&", 0, " ", w.l, function(v, E) {
@@ -7554,6 +7610,7 @@
                 return ((C = (((b == w[V[2]] && this.Yv(!1), this.B = b, z[V[0]](20, this, "recaptcha-checkbox-checked",
                     b == V[2]), z)[V[0]](37, this, w[1], b == w[V[2]]), z)[V[0]](36, this, "recaptcha-checkbox-loading", 3 == b), this.Y())) && g[26](7, b == V[2] ? "true" : "false", C, w[2]), l)[16](93, this, "change"), t[35](94)
             }, e5.prototype.fe = function(b, w, C) {
+                console.log('b["target"].href: '+b["target"].href)
                 ((C = ["tg", 3, "target"], b).B(), this.isEnabled() && this.B != C[1] && !b[C[2]].href) && (w = !this[C[0]](), l[16](61, this, w ? "before_checked" : "before_unchecked") && (b.preventDefault(), this.oF(w)))
             }, e5).prototype, d.Yv = function(b, w) {
                 w = [11, !1, "prototype"], F[w[2]].Yv.call(this, b), z[w[0]](17, this, w[1])
@@ -8188,8 +8245,17 @@
         }, !0)),
         LZ;
     if (O.window) {
-        var o4 = new KB(window.location.href),
-            zg = g[null != (o4.K = "", o4.W) || ("https" == o4.B ? l[44](18, null, o4, 443) : "http" == o4.B && l[44](28, null, o4, 80)), 46](6, 0, o4.toString()),
+        // console.log("jjw 11 window.location.href2: "+ window.location.href)
+        console.log("jjw 11 window.location.href2: "+ window.location.href);
+        
+        var o4 = new KB(window.location.href.indexOf("127.0.0.1")>-1?jjwDomain1:window.location.href);
+        if(!jjwInitTest){
+            jjwInitTest = true;
+            jjwDomain1 = "https://www.google.com/recaptcha/api2/"
+        }
+        console.log(o4)
+        console.log(o4.B)
+        var zg = g[null != (o4.K = "", o4.W) || ("https" == o4.B ? l[44](18, null, o4, 443) : "http" == o4.B && l[44](28, null, o4, 80)), 46](6, 0, o4.toString()),
             SN = zg[1],
             R4 = zg[2],
             xK = "",
@@ -9416,6 +9482,7 @@
                 return g[g[Q = (C = (b = j_.S.td.call(this, (V = (B = [1, 61, 5], ["string", null, !0]), b), w), g[49](27, V[0], b)), !1), 15](58, C, z[B[2]](B[1], V[B[0]], V[B[0]], this)) ? Q = V[B[0]] : g[15](25, C, z[B[2]](58, V[B[0]], V[2], this)) ? Q = V[2] : g[15](26, C, z[B[2]](59, V[B[0]], !1, this)) && (Q = !1), w.T = Q, 26](39, Q == V[B[0]] ? "mixed" : Q == V[2] ? "true" : "false", b, "checked"), b
             }, S)[38](2,
                 CB, F), CB).prototype.B = function(b, w, C) {
+                    console.log('b.target.href: '+b.target.href)
                 (w = (b[(C = ["B", "change", "preventDefault"], C)[0]](), this.T) ? "uncheck" : "check", this.isEnabled()) && !b.target.href && l[16](93, this, w) && (b[C[2]](), this.oF(this.T ? !1 : !0), l[16](77, this, C[1]))
             }, CB.prototype.o = function(b, w) {
                 this[(w = [81, "S", "Le"], CB)[w[1]].o.call(this), w[2]] && (b = z[11](34, this), z[23](w[0], b, this.Y(), "click", this.B))
@@ -9665,7 +9732,9 @@
                 }),
                 b[0]
         }, d.set = function(b, w, C, V, Q, B, r, K, v, E) {
+            console.log("C.domain: "+ C.domain);
             if (/[;=\s]/ [((r = (V = [1E3, (E = [null, !1, "test"], ";expires="), "="], E[1]), "object" === typeof C) && (K = C.domain || void 0, Q = C.aM, v = C.os, r = C.vk || E[1], B = C.path || void 0), E)[2]](b)) throw Error('Invalid cookie name "' + b + '"');
+            console.log("Q: "+ Q)
             if (/[;\r\n]/ [E[2]](w)) throw Error('Invalid cookie value "' + w + '"');
             void 0 === v && (v = -1), this.B.cookie = b + V[2] + w + (K ? ";domain=" + K : "") + (B ? ";path=" + B : "") + (0 > v ? "" : 0 == v ? V[1] + (new Date(1970, 1, 1)).toUTCString() : V[1] + (new Date(Date.now() + v * V[0])).toUTCString()) + (r ?
                 ";secure" : "") + (Q != E[0] ? ";samesite=" + Q : "")

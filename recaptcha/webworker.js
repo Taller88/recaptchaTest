@@ -1,1 +1,1 @@
-importScripts('/recaptcha/recaptcha__ko.js');
+importScripts('/recaptcha/recaptcha__ko2.js');
